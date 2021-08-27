@@ -4,7 +4,7 @@ Begin WebPage MainWebPage
    Compatibility   =   ""
    ControlID       =   ""
    Enabled         =   False
-   Height          =   400
+   Height          =   476
    ImplicitInstance=   True
    Index           =   -2147483648
    Indicator       =   0
@@ -24,22 +24,22 @@ Begin WebPage MainWebPage
    Title           =   "Untitled"
    Top             =   0
    Visible         =   True
-   Width           =   600
+   Width           =   658
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
    _mPanelIndex    =   -1
    Begin WebListBox ExampleListBox
-      ColumnCount     =   4
+      ColumnCount     =   5
       ColumnWidths    =   ""
       ControlID       =   ""
       Enabled         =   True
       HasHeader       =   True
-      Height          =   360
+      Height          =   436
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
-      InitialValue    =   "Name	Email	Status	 "
+      InitialValue    =   "Name	Email	Website	Status	 "
       LastAddedRowIndex=   0
       Left            =   20
       LockBottom      =   True
@@ -60,7 +60,7 @@ Begin WebPage MainWebPage
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
-      Width           =   341
+      Width           =   399
       _mPanelIndex    =   -1
    End
    Begin WebTextField EmailTextField
@@ -74,7 +74,7 @@ Begin WebPage MainWebPage
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   380
+      Left            =   438
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -105,7 +105,7 @@ Begin WebPage MainWebPage
       Hint            =   ""
       Index           =   -2147483648
       Indicator       =   ""
-      Left            =   380
+      Left            =   438
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -134,7 +134,7 @@ Begin WebPage MainWebPage
       InitialValue    =   "New\nCreated\nDone\nCancelled"
       LastAddedRowIndex=   0
       LastRowIndex    =   0
-      Left            =   380
+      Left            =   438
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -146,9 +146,9 @@ Begin WebPage MainWebPage
       Scope           =   2
       SelectedRowIndex=   0
       SelectedRowValue=   ""
-      TabIndex        =   4
+      TabIndex        =   5
       Tooltip         =   ""
-      Top             =   214
+      Top             =   292
       Visible         =   True
       Width           =   200
       _mPanelIndex    =   -1
@@ -163,7 +163,7 @@ Begin WebPage MainWebPage
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False
-      Left            =   380
+      Left            =   438
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -173,12 +173,12 @@ Begin WebPage MainWebPage
       LockVertical    =   False
       Multiline       =   False
       Scope           =   2
-      TabIndex        =   3
+      TabIndex        =   4
       Text            =   "Status:"
       TextAlignment   =   0
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   176
+      Top             =   254
       Underline       =   False
       Visible         =   True
       Width           =   200
@@ -194,7 +194,7 @@ Begin WebPage MainWebPage
       Height          =   38
       Index           =   -2147483648
       Indicator       =   1
-      Left            =   380
+      Left            =   438
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -203,9 +203,41 @@ Begin WebPage MainWebPage
       LockTop         =   True
       LockVertical    =   False
       Scope           =   2
-      TabIndex        =   5
+      TabIndex        =   6
       Tooltip         =   ""
-      Top             =   284
+      Top             =   362
+      Visible         =   True
+      Width           =   200
+      _mPanelIndex    =   -1
+   End
+   Begin WebTextField WebsiteTextField
+      AllowAutoComplete=   False
+      AllowSpellChecking=   False
+      Caption         =   "Website:"
+      ControlID       =   ""
+      Enabled         =   True
+      FieldType       =   5
+      Height          =   70
+      Hint            =   ""
+      Index           =   -2147483648
+      Indicator       =   ""
+      Left            =   438
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      LockVertical    =   False
+      MaximumCharactersAllowed=   0
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   3
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   0
+      Tooltip         =   ""
+      Top             =   176
       Visible         =   True
       Width           =   200
       _mPanelIndex    =   -1
@@ -218,7 +250,10 @@ End
 		Private Sub ResetForm()
 		  NameTextField.Text = ""
 		  EmailTextField.Text = ""
+		  WebsiteTextField.Text = ""
 		  StatusPopupMenu.SelectedRowIndex = 0
+		  
+		  NameTextField.SetFocus
 		End Sub
 	#tag EndMethod
 
@@ -248,12 +283,15 @@ End
 #tag Events AddButton
 	#tag Event
 		Sub Pressed()
-		  ExampleListBox.AddRow(NameTextField.Text, "email", "status", "actions")
+		  ExampleListBox.AddRow(NameTextField.Text, "email", "website", "status", "actions")
 		  Var index As Integer = ExampleListBox.LastAddedRowIndex
 		  
 		  ' Gravatar cell
 		  ExampleListBox.CellValueAt(index, 1) = New GravatarCellRenderer(EmailTextField.Text, EmailTextField.Text)
 		  ExampleListBox.CellTagAt(index, 1) = EmailTextField.Text
+		  
+		  ' Text with copy button cell
+		  ExampleListBox.CellValueAt(index, 2) = New TextWithCopyButtonCellRenderer(WebsiteTextField.Text, True)
 		  
 		  ' Status cell
 		  Var state As StatusCellRenderer.States
@@ -267,13 +305,13 @@ End
 		  Case "Cancelled"
 		    state = StatusCellRenderer.States.Unhealthy
 		  End Select
-		  ExampleListBox.CellValueAt(index, 2) = New StatusCellRenderer(state, StatusPopupMenu.SelectedRowValue, True)
+		  ExampleListBox.CellValueAt(index, 3) = New StatusCellRenderer(state, StatusPopupMenu.SelectedRowValue, True)
 		  
 		  ' Actions cell
 		  Var actionButtons() As GroupButtonItem
 		  actionButtons.Add(New GroupButtonItem("view", "View"))
 		  actionButtons.Add(New GroupButtonItem("delete", "Delete", "danger"))
-		  ExampleListBox.CellValueAt(index, 3) = New GroupButtonsCellRenderer(actionButtons)
+		  ExampleListBox.CellValueAt(index, 4) = New GroupButtonsCellRenderer(actionButtons)
 		  
 		  ResetForm
 		End Sub
