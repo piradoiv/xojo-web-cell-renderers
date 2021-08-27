@@ -6,7 +6,7 @@ Enhance your WebListView controls using these cell renderers.
 ## Installation
 1. Clone or download this repository
 2. Open CustomCellRenderers.xojo_project with [Xojo](https://www.xojo.com/)
-3. Copy `Cell Renderers` folder into your project
+3. Drag & Drop `Cell Renderers` folder into your project
 4. Done!, you can use them already!
 
 ## Usage
