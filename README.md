@@ -1,16 +1,27 @@
-# Custom Cell Renderers ready to use with your Xojo Web 2 projects
+# Cell Renderers for your next Xojo Web 2 project
 
 Enhance your WebListView controls using these cell renderers.
 ![Custom Cell Renderers in action](images/example-for-readme.png)
 
-## GravatarCellRenderer
+## Installation
+1. Clone or download this repository
+2. Open CustomCellRenderers.xojo_project with [Xojo](https://www.xojo.com/)
+3. Copy `Cell Renderers` folder into your project
+4. Done!, you can use them already!
+
+## Usage
+You can open the project itself as an example, it contains a simple web page with the working code.
+
+## Available Cell Renderers and code Examples
+
+### GravatarCellRenderer
 ```xojo
 Var email As String = "example@example.com"
 Var caption As String = "Jane Doe"
 list.CellValueAt(row, column) = New GravatarCellRenderer(email, caption)
 ```
 
-## StatusCellRenderer
+### StatusCellRenderer
 ```xojo
 Var state As SatusCellRenderer = StatusCellRenderer.States.Healthy
 list.CellValueAt(row, column) = New StatusCellRenderer(state, "OK", True)
@@ -25,7 +36,7 @@ If identifier = "StatusRefreshButtonPressed" Then
 End If
 ```
 
-## TextWithCopyButtonCellRenderer
+### TextWithCopyButtonCellRenderer
 ```xojo
 Var token As String = "ABCDEFGH9876"
 list.CellValueAt(row, column) = New TextWithCopyButtonCellRenderer(token, False)
@@ -35,7 +46,7 @@ Var url As String = "https://en.rcruz.es/"
 list.CellValueAt(row, column) = New TextWithCopyButtonCellRenderer(url, True)
 ```
 
-## GroupButtonsCellRenderer
+### GroupButtonsCellRenderer
 ```xojo
 Var buttons() As GroupButtonItem
 buttons.Add(New GroupButtonItem("view", "View"))
