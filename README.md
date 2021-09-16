@@ -23,7 +23,7 @@ list.CellValueAt(row, column) = New GravatarCellRenderer(email, caption)
 
 ### StatusCellRenderer
 ```xojo
-Var state As SatusCellRenderer = StatusCellRenderer.States.Healthy
+Var state As StatusCellRenderer.States = StatusCellRenderer.States.Healthy
 list.CellValueAt(row, column) = New StatusCellRenderer(state, "OK", True)
 ' Set last parameter to False to disable refresh button
 ```
