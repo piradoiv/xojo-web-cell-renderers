@@ -41,6 +41,7 @@ Begin WebPage MainWebPage
       Indicator       =   ""
       InitialValue    =   "Name	Email	Website	Status	 "
       LastAddedRowIndex=   0
+      LastRowIndex    =   0
       Left            =   20
       LockBottom      =   True
       LockedInPosition=   False
@@ -50,6 +51,7 @@ Begin WebPage MainWebPage
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
+      ProcessingMessage=   ""
       RowCount        =   0
       RowSelectionType=   0
       Scope           =   2
@@ -205,7 +207,7 @@ Begin WebPage MainWebPage
       Scope           =   2
       TabIndex        =   6
       Tooltip         =   ""
-      Top             =   362
+      Top             =   418
       Visible         =   True
       Width           =   200
       _mPanelIndex    =   -1
@@ -233,11 +235,36 @@ Begin WebPage MainWebPage
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   3
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
       Top             =   176
+      Visible         =   True
+      Width           =   200
+      _mPanelIndex    =   -1
+   End
+   Begin WebCheckbox WebCheckBoxSelected
+      Caption         =   "Is Checked"
+      ControlID       =   ""
+      Enabled         =   True
+      Height          =   34
+      Indeterminate   =   False
+      Index           =   -2147483648
+      Indicator       =   ""
+      Left            =   438
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      LockVertical    =   False
+      Scope           =   2
+      TabIndex        =   7
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   355
+      Value           =   False
       Visible         =   True
       Width           =   200
       _mPanelIndex    =   -1
@@ -252,6 +279,7 @@ End
 		  EmailTextField.Text = ""
 		  WebsiteTextField.Text = ""
 		  StatusPopupMenu.SelectedRowIndex = 0
+		  WebCheckBoxSelected.Value = False
 		  
 		  NameTextField.SetFocus
 		End Sub
@@ -266,16 +294,24 @@ End
 		  If identifier = "GroupButtonPressed" Then
 		    Select Case value
 		    Case "view"
-		      Var name As String = Me.CellValueAt(row, 0)
+		      Var checkCell As CheckCellRender = Me.CellTextAt(row,0)
+		      Var name As String = checkCell.Caption
 		      Var email As String = Me.CellTagAt(row, 1)
-		      MessageBox(name + " <" + email + ">")
+		      MessageBox(name + " <" + email + "> ; isChecked = "+checkCell.Checked.ToString)
 		    Case "delete"
 		      Me.RemoveRowAt(row)
 		    End Select
 		  End If
 		  
 		  If identifier = "StatusRefreshButtonPressed" Then
-		    Me.CellValueAt(row, column) = New StatusCellRenderer(StatusCellRenderer.States.Healthy, "OK", False)
+		    Me.CellTextAt(row, column) = New StatusCellRenderer(StatusCellRenderer.States.Healthy, "OK", False)
+		  End If
+		  
+		  If identifier = "CheckPressed" Then
+		    MessageBox(value)
+		    Var checkCell As CheckCellRender = Me.CellTextAt(row,column)
+		    Me.CellValueAt(row,column) = New CheckCellRender(checkCell.Caption, Not checkCell.Checked)
+		    Me.CellTagAt(row, column) = Not checkCell.Checked
 		  End If
 		End Sub
 	#tag EndEvent
@@ -285,6 +321,10 @@ End
 		Sub Pressed()
 		  ExampleListBox.AddRow(NameTextField.Text, "email", "website", "status", "actions")
 		  Var index As Integer = ExampleListBox.LastAddedRowIndex
+		  
+		  ' Checkbox cell with text
+		  ExampleListBox.CellValueAt(index,0) = New CheckCellRender(NameTextField.Text,WebCheckBoxSelected.Value)
+		  ExampleListBox.CellTagAt(index, 0) = WebCheckBoxSelected.Value
 		  
 		  ' Gravatar cell
 		  ExampleListBox.CellValueAt(index, 1) = New GravatarCellRenderer(EmailTextField.Text, EmailTextField.Text)
@@ -312,6 +352,7 @@ End
 		  actionButtons.Add(New GroupButtonItem("view", "View"))
 		  actionButtons.Add(New GroupButtonItem("delete", "Delete", "danger"))
 		  ExampleListBox.CellValueAt(index, 4) = New GroupButtonsCellRenderer(actionButtons)
+		  
 		  
 		  ResetForm
 		End Sub
