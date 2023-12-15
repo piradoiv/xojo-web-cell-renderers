@@ -15,14 +15,14 @@ You can open the project itself as an example, it contains a simple web page wit
 ## Available Cell Renderers and code Examples
 
 ### GravatarCellRenderer
-```xojo
+```vb
 Var email As String = "example@example.com"
 Var caption As String = "Jane Doe"
 list.CellValueAt(row, column) = New GravatarCellRenderer(email, caption)
 ```
 
 ### StatusCellRenderer
-```xojo
+```vb
 Var state As StatusCellRenderer.States = StatusCellRenderer.States.Healthy
 list.CellValueAt(row, column) = New StatusCellRenderer(state, "OK", True)
 ' Set last parameter to False to disable refresh button
@@ -30,14 +30,14 @@ list.CellValueAt(row, column) = New StatusCellRenderer(state, "OK", True)
 
 You can listen to the CustomCellAction event waiting for clicks on the refresh button, the `identifier` will be `StatusRefreshButtonPressed`.
 
-```xojo
+```vb
 If identifier = "StatusRefreshButtonPressed" Then
   MessageBox("Refresh has been pressed!")
 End If
 ```
 
 ### TextWithCopyButtonCellRenderer
-```xojo
+```vb
 Var token As String = "ABCDEFGH9876"
 list.CellValueAt(row, column) = New TextWithCopyButtonCellRenderer(token, False)
 
@@ -47,7 +47,7 @@ list.CellValueAt(row, column) = New TextWithCopyButtonCellRenderer(url, True)
 ```
 
 ### GroupButtonsCellRenderer
-```xojo
+```vb
 Var buttons() As GroupButtonItem
 buttons.Add(New GroupButtonItem("view", "View"))
 buttons.Add(New GroupButtonItem("delete", "Delete", "danger"))
@@ -59,7 +59,7 @@ The third parameter could be one of the color utilities of [Bootstrap](https://g
 
 You can listen to the CustomCellAction event waiting for clicks on the refresh button, the `identifier` will be `GroupButtonPressed`, while the `value` will be the first parameter.
 
-```xojo
+```vb
 If identifier = "GroupButtonPressed" Then
   Select Case value
   Case "view"
@@ -70,7 +70,7 @@ If identifier = "GroupButtonPressed" Then
 End If
 ```
 ### CheckCellRender
-```xojo
+```vb
 Var caption As String = "Hello, this is the caption value"
 Var checked As Boolean = True
 list.CellValueAt(row,column) = New CheckCellRender(caption,checked)
@@ -81,7 +81,7 @@ You can listen to the CustomCellAction event waiting for clicks on the check, th
 If you need to access the caption value of the cell, you will have to create a CheckCellRender class object and access its properties.
 Anyway, for each change in the checkbox, it will be necessary to create a new cell with the value of the opposite check.
 
-```xojo
+```vb
 If identifier = "CheckPressed" Then
   Var checkCell As CheckCellRender = Me.CellTextAt(row,column)
   Me.CellValueAt(row,column) = New CheckCellRender(checkCell.Caption, Not checkCell.Checked)
