@@ -2,14 +2,14 @@
 Protected Class GravatarCellRenderer
 Inherits WebListBoxCellRenderer
 	#tag Event
-		Sub Deserialize(js as JSONItem)
+		Sub Deserialize(js As JSONItem)
 		  EmailHash = js.Value("hash")
 		  Name = js.Value("name")
 		End Sub
 	#tag EndEvent
 
 	#tag Event
-		Function JavascriptClassCode(s as websession) As String
+		Function JavascriptClassCode(s As WebSession) As String
 		  Return kJavaScript
 		End Function
 	#tag EndEvent
@@ -43,7 +43,7 @@ Inherits WebListBoxCellRenderer
 	#tag EndProperty
 
 
-	#tag Constant, Name = kJavaScript, Type = String, Dynamic = False, Default = \"class GravatarCell extends XojoWeb.ListboxCellRenderer {\n  render(controlID\x2C row\x2C data\x2C rowIndex\x2C columnIndex\x2C cell) {\n    let avatar \x3D document.createElement(\'img\');\n    avatar.src \x3D `https://www.gravatar.com/avatar/${data.hash}\?s\x3D24`;\n    avatar.className \x3D \'rounded-circle\';\n    avatar.style \x3D \'margin-right: 10px;\';\n    cell.innerHTML \x3D \'\';\n    cell.style\x3D\"display: flex; flex-direction: row; align-items: center;\";\n    cell.appendChild(avatar);\n    cell.innerHTML +\x3D \' \' + data.name;\n  }\n}", Scope = Public
+	#tag Constant, Name = kJavaScript, Type = String, Dynamic = False, Default = \"class GravatarCell extends XojoWeb.ListboxCellRenderer {\n  render(controlID\x2C row\x2C data\x2C rowIndex\x2C columnIndex\x2C cell) {\n    const container \x3D document.createElement(\'div\');\n    const avatar \x3D document.createElement(\'img\');\n    avatar.src \x3D `https://www.gravatar.com/avatar/${data.hash}\?s\x3D24`;\n    avatar.className \x3D \'rounded-circle\';\n    avatar.style \x3D \'margin-right: 10px;\';\n    const nameLabel \x3D document.createElement(\'span\');\n    nameLabel.innerText \x3D data.name;\n    cell.innerHTML \x3D \'\';\n    container.style\x3D\"display: flex; align-items: center;\";\n    container.appendChild(avatar);\n    container.appendChild(nameLabel);\n    cell.appendChild(container);\n  }\n}", Scope = Private
 	#tag EndConstant
 
 
