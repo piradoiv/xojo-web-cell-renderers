@@ -2,7 +2,9 @@
 Begin WebPage MainWebPage
    AllowTabOrderWrap=   True
    Compatibility   =   ""
+   ControlCount    =   0
    ControlID       =   ""
+   CSSClasses      =   ""
    Enabled         =   False
    Height          =   476
    ImplicitInstance=   True
@@ -20,6 +22,8 @@ Begin WebPage MainWebPage
    LockVertical    =   False
    MinimumHeight   =   400
    MinimumWidth    =   600
+   PanelIndex      =   0
+   ScaleFactor     =   0.0
    TabIndex        =   0
    Title           =   "Untitled"
    Top             =   0
@@ -30,17 +34,24 @@ Begin WebPage MainWebPage
    _mDesignWidth   =   0
    _mPanelIndex    =   -1
    Begin WebListBox ExampleListBox
+      AllowRowReordering=   False
       ColumnCount     =   5
       ColumnWidths    =   ""
       ControlID       =   ""
+      CSSClasses      =   ""
+      DefaultRowHeight=   49
       Enabled         =   True
+      GridLineStyle   =   3
+      HasBorder       =   True
       HasHeader       =   True
+      HeaderHeight    =   0
       Height          =   436
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
       InitialValue    =   "Name	Email	Website	Status	 "
       LastAddedRowIndex=   0
+      LastColumnIndex =   0
       LastRowIndex    =   0
       Left            =   20
       LockBottom      =   True
@@ -51,6 +62,7 @@ Begin WebPage MainWebPage
       LockTop         =   True
       LockVertical    =   False
       NoRowsMessage   =   ""
+      PanelIndex      =   0
       ProcessingMessage=   ""
       RowCount        =   0
       RowSelectionType=   0
@@ -59,6 +71,7 @@ Begin WebPage MainWebPage
       SelectedRowColor=   &c0272D300
       SelectedRowIndex=   0
       TabIndex        =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   20
       Visible         =   True
@@ -70,6 +83,7 @@ Begin WebPage MainWebPage
       AllowSpellChecking=   False
       Caption         =   "Email:"
       ControlID       =   ""
+      CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   2
       Height          =   70
@@ -85,9 +99,11 @@ Begin WebPage MainWebPage
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
+      PanelIndex      =   0
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   2
+      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
@@ -101,6 +117,7 @@ Begin WebPage MainWebPage
       AllowSpellChecking=   False
       Caption         =   "Name:"
       ControlID       =   ""
+      CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   0
       Height          =   70
@@ -116,9 +133,11 @@ Begin WebPage MainWebPage
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
+      PanelIndex      =   0
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   1
+      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
@@ -129,6 +148,7 @@ Begin WebPage MainWebPage
    End
    Begin WebPopupMenu StatusPopupMenu
       ControlID       =   ""
+      CSSClasses      =   ""
       Enabled         =   True
       Height          =   38
       Index           =   -2147483648
@@ -144,11 +164,13 @@ Begin WebPage MainWebPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
+      PanelIndex      =   0
       RowCount        =   0
       Scope           =   2
       SelectedRowIndex=   0
-      SelectedRowValue=   ""
+      SelectedRowText =   ""
       TabIndex        =   5
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   292
       Visible         =   True
@@ -158,6 +180,7 @@ Begin WebPage MainWebPage
    Begin WebLabel StatusLabel
       Bold            =   False
       ControlID       =   ""
+      CSSClasses      =   ""
       Enabled         =   True
       FontName        =   ""
       FontSize        =   0.0
@@ -174,8 +197,10 @@ Begin WebPage MainWebPage
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   4
+      TabStop         =   True
       Text            =   "Status:"
       TextAlignment   =   0
       TextColor       =   &c00000000
@@ -191,6 +216,7 @@ Begin WebPage MainWebPage
       Cancel          =   False
       Caption         =   "Add"
       ControlID       =   ""
+      CSSClasses      =   ""
       Default         =   True
       Enabled         =   True
       Height          =   38
@@ -204,8 +230,11 @@ Begin WebPage MainWebPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
+      Outlined        =   False
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   6
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   418
       Visible         =   True
@@ -217,6 +246,7 @@ Begin WebPage MainWebPage
       AllowSpellChecking=   False
       Caption         =   "Website:"
       ControlID       =   ""
+      CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   5
       Height          =   70
@@ -232,9 +262,11 @@ Begin WebPage MainWebPage
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
+      PanelIndex      =   0
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   3
+      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
@@ -246,6 +278,7 @@ Begin WebPage MainWebPage
    Begin WebCheckbox WebCheckBoxSelected
       Caption         =   "Is Checked"
       ControlID       =   ""
+      CSSClasses      =   ""
       Enabled         =   True
       Height          =   34
       Indeterminate   =   False
@@ -259,6 +292,7 @@ Begin WebPage MainWebPage
       LockRight       =   True
       LockTop         =   True
       LockVertical    =   False
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   7
       TabStop         =   True
@@ -290,11 +324,11 @@ End
 
 #tag Events ExampleListBox
 	#tag Event
-		Sub CustomCellAction(row as Integer, column as Integer, identifier as string, value as variant)
+		Sub CustomCellAction(row As Integer, column As Integer, identifier As String, value As Variant)
 		  If identifier = "GroupButtonPressed" Then
 		    Select Case value
 		    Case "view"
-		      Var checkCell As CheckCellRender = Me.CellTextAt(row,0)
+		      Var checkCell As CheckCellRender = CheckCellRender(Me.CellRendererAt(row, 0))
 		      Var name As String = checkCell.Caption
 		      Var email As String = Me.CellTagAt(row, 1)
 		      MessageBox(name + " <" + email + "> ; isChecked = "+checkCell.Checked.ToString)
@@ -304,13 +338,13 @@ End
 		  End If
 		  
 		  If identifier = "StatusRefreshButtonPressed" Then
-		    Me.CellTextAt(row, column) = New StatusCellRenderer(StatusCellRenderer.States.Healthy, "OK", False)
+		    Me.CellRendererAt(row, column) = New StatusCellRenderer(StatusCellRenderer.States.Healthy, "OK", False)
 		  End If
 		  
 		  If identifier = "CheckPressed" Then
 		    MessageBox(value)
-		    Var checkCell As CheckCellRender = Me.CellTextAt(row,column)
-		    Me.CellValueAt(row,column) = New CheckCellRender(checkCell.Caption, Not checkCell.Checked)
+		    Var checkCell As CheckCellRender = CheckCellRender(Me.CellRendererAt(row, column))
+		    Me.CellValueAt(row, column) = New CheckCellRender(checkCell.Caption, Not checkCell.Checked)
 		    Me.CellTagAt(row, column) = Not checkCell.Checked
 		  End If
 		End Sub
