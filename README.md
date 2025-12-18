@@ -69,22 +69,3 @@ If identifier = "GroupButtonPressed" Then
   End Select
 End If
 ```
-### CheckCellRender
-```vb
-Var caption As String = "Hello, this is the caption value"
-Var checked As Boolean = True
-list.CellValueAt(row,column) = New CheckCellRender(caption,checked)
-list.CellTagAt(row,column) = checked
-```
-You can listen to the CustomCellAction event waiting for clicks on the check, the `identifier` will be `CheckPressed`.  while the `value` will be the boolean checked value.
-
-If you need to access the caption value of the cell, you will have to create a CheckCellRender class object and access its properties.
-Anyway, for each change in the checkbox, it will be necessary to create a new cell with the value of the opposite check.
-
-```vb
-If identifier = "CheckPressed" Then
-  Var checkCell As CheckCellRender = Me.CellTextAt(row,column)
-  Me.CellValueAt(row,column) = New CheckCellRender(checkCell.Caption, Not checkCell.Checked)
-  Me.CellTagAt(row, column) = Not checkCell.Checked
-End If
-```
