@@ -86,6 +86,7 @@ Begin WebPage MainWebPage
       CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   2
+      Format          =   ""
       Height          =   70
       Hint            =   ""
       Index           =   -2147483648
@@ -120,6 +121,7 @@ Begin WebPage MainWebPage
       CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   0
+      Format          =   ""
       Height          =   70
       Hint            =   ""
       Index           =   -2147483648
@@ -185,6 +187,7 @@ Begin WebPage MainWebPage
       FontName        =   ""
       FontSize        =   0.0
       Height          =   38
+      HTMLElement     =   0
       Index           =   -2147483648
       Indicator       =   ""
       Italic          =   False
@@ -249,6 +252,7 @@ Begin WebPage MainWebPage
       CSSClasses      =   ""
       Enabled         =   True
       FieldType       =   5
+      Format          =   ""
       Height          =   70
       Hint            =   ""
       Index           =   -2147483648
