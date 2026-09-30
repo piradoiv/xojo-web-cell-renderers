@@ -372,11 +372,11 @@ End
 		  ExampleListBox.CellCheckBoxValueAt(index, 0) = WebCheckBoxSelected.Value
 		  
 		  ' Gravatar cell
-		  ExampleListBox.CellValueAt(index, 1) = New GravatarCellRenderer(EmailTextField.Text, EmailTextField.Text)
+		  ExampleListBox.CellRendererAt(index, 1) = New GravatarCellRenderer(EmailTextField.Text, EmailTextField.Text)
 		  ExampleListBox.CellTagAt(index, 1) = EmailTextField.Text
 		  
 		  ' Text with copy button cell
-		  ExampleListBox.CellValueAt(index, 2) = New TextWithCopyButtonCellRenderer(WebsiteTextField.Text, True)
+		  ExampleListBox.CellRendererAt(index, 2) = New TextWithCopyButtonCellRenderer(WebsiteTextField.Text, True)
 		  
 		  ' Status cell
 		  Var state As StatusCellRenderer.States
@@ -390,17 +390,17 @@ End
 		  Case "Cancelled"
 		    state = StatusCellRenderer.States.Unhealthy
 		  End Select
-		  ExampleListBox.CellValueAt(index, 3) = New StatusCellRenderer(state, StatusPopupMenu.SelectedRowValue, True)
+		  ExampleListBox.CellRendererAt(index, 3) = New StatusCellRenderer(state, StatusPopupMenu.SelectedRowValue, True)
 		  
 		  ' Popup menu cell
 		  Var priorities() As String = Array("Low", "Medium", "High")
-		  ExampleListBox.CellValueAt(index, 4) = New PopupMenuCellRenderer(priorities, 1)
+		  ExampleListBox.CellRendererAt(index, 4) = New PopupMenuCellRenderer(priorities, 1)
 		  
 		  ' Actions cell
 		  Var actionButtons() As GroupButtonItem
 		  actionButtons.Add(New GroupButtonItem("view", "View"))
 		  actionButtons.Add(New GroupButtonItem("delete", "Delete", "danger"))
-		  ExampleListBox.CellValueAt(index, 5) = New GroupButtonsCellRenderer(actionButtons)
+		  ExampleListBox.CellRendererAt(index, 5) = New GroupButtonsCellRenderer(actionButtons)
 		  
 		  
 		  ResetForm

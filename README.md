@@ -18,13 +18,13 @@ You can open the project itself as an example, it contains a simple web page wit
 ```vb
 Var email As String = "example@example.com"
 Var caption As String = "Jane Doe"
-list.CellValueAt(row, column) = New GravatarCellRenderer(email, caption)
+list.CellRendererAt(row, column) = New GravatarCellRenderer(email, caption)
 ```
 
 ### StatusCellRenderer
 ```vb
 Var state As StatusCellRenderer.States = StatusCellRenderer.States.Healthy
-list.CellValueAt(row, column) = New StatusCellRenderer(state, "OK", True)
+list.CellRendererAt(row, column) = New StatusCellRenderer(state, "OK", True)
 ' Set last parameter to False to disable refresh button
 ```
 
@@ -39,11 +39,11 @@ End If
 ### TextWithCopyButtonCellRenderer
 ```vb
 Var token As String = "ABCDEFGH9876"
-list.CellValueAt(row, column) = New TextWithCopyButtonCellRenderer(token, False)
+list.CellRendererAt(row, column) = New TextWithCopyButtonCellRenderer(token, False)
 
 ' If the text is a URL, you can convert it to a link by passing True as a second parameter (defaults to False)
 Var url As String = "https://en.rcruz.es/"
-list.CellValueAt(row, column) = New TextWithCopyButtonCellRenderer(url, True)
+list.CellRendererAt(row, column) = New TextWithCopyButtonCellRenderer(url, True)
 ```
 
 ### GroupButtonsCellRenderer
@@ -51,7 +51,7 @@ list.CellValueAt(row, column) = New TextWithCopyButtonCellRenderer(url, True)
 Var buttons() As GroupButtonItem
 buttons.Add(New GroupButtonItem("view", "View"))
 buttons.Add(New GroupButtonItem("delete", "Delete", "danger"))
-list.CellValueAt(row, column) = New GroupButtonsCellRenderer(buttons)
+list.CellRendererAt(row, column) = New GroupButtonsCellRenderer(buttons)
 ```
 
 The third parameter could be one of the color utilities of [Bootstrap](https://getbootstrap.com/docs/5.1/components/buttons/) (defaults to `secondary`):   
@@ -73,7 +73,7 @@ End If
 ### PopupMenuCellRenderer
 ```vb
 Var priorities() As String = Array("Low", "Medium", "High")
-list.CellValueAt(row, column) = New PopupMenuCellRenderer(priorities, 1)
+list.CellRendererAt(row, column) = New PopupMenuCellRenderer(priorities, 1)
 ' Second parameter is the selected row index (defaults to -1, nothing selected)
 ```
 

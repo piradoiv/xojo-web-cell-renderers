@@ -2,10 +2,13 @@
 Protected Class Session
 Inherits WebSession
 #tag Session
-  interruptmessage=
-  disconnectmessage=
+  interruptmessage=We are having trouble communicating with the server. Please wait a moment while we attempt to reconnect.
+  disconnectmessage=You have been disconnected from this application.
   confirmmessage=
-  AllowTabOrderWrap=
+  AllowTabOrderWrap=False
+  ColorMode=0
+  SendEventsInBatches=True
+  LazyLoadDependencies=True
 #tag EndSession
 End Class
 #tag EndClass
