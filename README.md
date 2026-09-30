@@ -69,3 +69,25 @@ If identifier = "GroupButtonPressed" Then
   End Select
 End If
 ```
+
+### PopupMenuCellRenderer
+```vb
+Var priorities() As String = Array("Low", "Medium", "High")
+list.CellValueAt(row, column) = New PopupMenuCellRenderer(priorities, 1)
+' Second parameter is the selected row index (defaults to -1, nothing selected)
+```
+
+You can listen to the CustomCellAction event waiting for selection changes, the `identifier` will be `PopupMenuSelectionChanged`, while the `value` will be the selected row index.
+
+The browser remembers the selection made by the user, so it won't be lost when the list is redrawn. If you also want the renderer stored in the cell to reflect it (for example, to read `SelectedRowIndex` later), assign it back:
+
+```vb
+If identifier = "PopupMenuSelectionChanged" Then
+  Var popup As PopupMenuCellRenderer = PopupMenuCellRenderer(Me.CellRendererAt(row, column))
+  popup.SelectedRowIndex = value.IntegerValue
+  Me.CellRendererAt(row, column) = popup
+  MessageBox("Selected: " + popup.RowTextAt(value.IntegerValue))
+End If
+```
+
+Changing `SelectedRowIndex` from code and assigning the renderer again always takes precedence over the selection remembered by the browser. If you're using a DataSource, store the new index in your data, so `RowData` builds the renderer with it.

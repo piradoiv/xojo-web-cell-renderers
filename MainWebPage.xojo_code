@@ -35,7 +35,7 @@ Begin WebPage MainWebPage
    _mPanelIndex    =   -1
    Begin WebListBox ExampleListBox
       AllowRowReordering=   False
-      ColumnCount     =   5
+      ColumnCount     =   6
       ColumnWidths    =   ""
       ControlID       =   ""
       CSSClasses      =   ""
@@ -49,7 +49,7 @@ Begin WebPage MainWebPage
       HighlightSortedColumn=   True
       Index           =   -2147483648
       Indicator       =   ""
-      InitialValue    =   "Name	Email	Website	Status	 "
+      InitialValue    =   "Name	Email	Website	Status	Priority	 "
       LastAddedRowIndex=   0
       LastColumnIndex =   0
       LastRowIndex    =   0
@@ -341,6 +341,13 @@ End
 		    End Select
 		  End If
 		  
+		  If identifier = "PopupMenuSelectionChanged" Then
+		    Var popup As PopupMenuCellRenderer = PopupMenuCellRenderer(Me.CellRendererAt(row, column))
+		    popup.SelectedRowIndex = value.IntegerValue
+		    Me.CellRendererAt(row, column) = popup
+		    MessageBox(Me.CellTextAt(row, 0) + " priority changed to " + popup.RowTextAt(value.IntegerValue))
+		  End If
+		  
 		  If identifier = "StatusRefreshButtonPressed" Then
 		    Me.CellRendererAt(row, column) = New StatusCellRenderer(StatusCellRenderer.States.Healthy, "OK", False)
 		  End If
@@ -357,7 +364,7 @@ End
 #tag Events AddButton
 	#tag Event
 		Sub Pressed()
-		  ExampleListBox.AddRow(NameTextField.Text, "email", "website", "status", "actions")
+		  ExampleListBox.AddRow(NameTextField.Text, "email", "website", "status", "priority", "actions")
 		  Var index As Integer = ExampleListBox.LastAddedRowIndex
 		  
 		  ' Checkbox cell with text
@@ -385,11 +392,15 @@ End
 		  End Select
 		  ExampleListBox.CellValueAt(index, 3) = New StatusCellRenderer(state, StatusPopupMenu.SelectedRowValue, True)
 		  
+		  ' Popup menu cell
+		  Var priorities() As String = Array("Low", "Medium", "High")
+		  ExampleListBox.CellValueAt(index, 4) = New PopupMenuCellRenderer(priorities, 1)
+		  
 		  ' Actions cell
 		  Var actionButtons() As GroupButtonItem
 		  actionButtons.Add(New GroupButtonItem("view", "View"))
 		  actionButtons.Add(New GroupButtonItem("delete", "Delete", "danger"))
-		  ExampleListBox.CellValueAt(index, 4) = New GroupButtonsCellRenderer(actionButtons)
+		  ExampleListBox.CellValueAt(index, 5) = New GroupButtonsCellRenderer(actionButtons)
 		  
 		  
 		  ResetForm
